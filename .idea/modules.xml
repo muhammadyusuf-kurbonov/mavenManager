@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maven_Manager.iml" filepath="$PROJECT_DIR$/.idea/modules/Maven_Manager.iml" group="Maven_Manager" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maven_Manager_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Maven_Manager_main.iml" group="Maven_Manager" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maven_Manager_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Maven_Manager_test.iml" group="Maven_Manager" />
+    </modules>
+  </component>
+</project>
