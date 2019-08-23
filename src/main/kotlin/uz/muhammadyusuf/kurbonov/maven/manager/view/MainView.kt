@@ -8,17 +8,17 @@ import javafx.scene.control.*
 import javafx.scene.layout.Priority
 import javafx.scene.paint.Color
 import tornadofx.*
+import tornadofx.controlsfx.progressDialog
 import uz.muhammadyusuf.kurbonov.maven.manager.app.Styles
 import uz.muhammadyusuf.kurbonov.maven.manager.icons.CODE
 import uz.muhammadyusuf.kurbonov.maven.manager.icons.SYNC
 import uz.muhammadyusuf.kurbonov.maven.manager.model.Dependency
-import uz.muhammadyusuf.kurbonov.maven.manager.model.DependencyFileReader
+import uz.muhammadyusuf.kurbonov.maven.manager.model.DependencyProvider
 import java.io.File
 import java.util.*
 
 
 class MainView : View("Maven Manager") {
-
 
     private val listOfSelected = mutableListOf<String>()
     private var currentPage = 0
@@ -53,7 +53,16 @@ class MainView : View("Maven Manager") {
 
                 toolbarbutton(svg = SYNC) {
                     onAction = EventHandler {
-
+                        progressDialog {
+                            DependencyProvider().optimizeIndexes(reload = true,
+                                    onMessageChange = {
+                                        updateMessage(it)
+                                    },
+                                    onProgressChange = {
+                                        updateProgress(it, 1.0)
+                                    })
+//                            getDefault().post(9)
+                        }
                     }
                 }
 
@@ -71,7 +80,7 @@ class MainView : View("Maven Manager") {
                             if (it.contains("compiler"))
                                 preffix = "kapt"
 
-                            result.appendText("\t$preffix $it \n")
+                            result.appendText("\t$preffix \"$it\" \n")
                         }
                         Runtime.getRuntime().exec("AkelPad\\AkelPad.exe " + result.absolutePath)
                     }
@@ -262,7 +271,7 @@ class MainView : View("Maven Manager") {
                 updateTitle("Starting loading ...")
                 updateProgress(0.01, 1.0)
                 var i = 0
-                val take = DependencyFileReader().loadArtifactsAsync()
+                val take = DependencyProvider().loadArtifactsAsync()
                         .filter {
                             if (filter.isNotEmpty() && filter != "*") it.toID().contains(filter)
                             else true

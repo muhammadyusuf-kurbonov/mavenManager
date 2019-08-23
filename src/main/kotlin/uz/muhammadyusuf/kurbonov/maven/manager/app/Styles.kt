@@ -56,8 +56,6 @@ class Styles : Stylesheet() {
         dep_button_selected {
             backgroundColor += Color.DODGERBLUE
             textFill = Color.WHITE
-
-            padding = box(Dimension(2.0, Dimension.LinearUnits.pt))
         }
 
         groupId {

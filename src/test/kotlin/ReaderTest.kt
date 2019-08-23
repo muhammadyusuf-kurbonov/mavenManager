@@ -1,6 +1,6 @@
-import uz.muhammadyusuf.kurbonov.maven.manager.model.DependencyFileReader
+import uz.muhammadyusuf.kurbonov.maven.manager.model.DependencyProvider
 
 fun main() {
-//    DependencyFileReader().generateIndexFile()
-    DependencyFileReader().optimizeIndexes(true)
+//    DependencyProvider().generateIndexFile()
+    DependencyProvider().optimizeIndexes(true)
 }
